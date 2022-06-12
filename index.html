@@ -33,8 +33,11 @@
       </div>
     </div>
   </div>
+  <div class="d-flex flex-wrap justify-content-center p-4 col-12">
+    <img src="images/icon.png" alt="icon" class="icon">
+  </div>
   <div class="d-flex justify-content-center mb-4 my-3 col-12">
-    <form class="row gy-2 gx-3 align-items-center col-5">
+    <form class="row gy-2 gx-3 align-items-center col-6">
         <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search" id="inputText">
     </form>
     <button type="button" class="btn rounded-pill btn-blue text-gray me-2" id="searchButton">Search</button>
@@ -83,7 +86,25 @@
         </div>
     </div>
   </div>
-  
+  <div id="single_anime_result">
+    <div class="d-flex flex-wrap align-items-start justify-content-center bg-purple p-3 row">
+      <div class="col-12 col-sm-3 pe-3 pb-3">
+        <div class="row">
+          <img src="https://cdn.myanimelist.net/images/anime/13/17405.jpg" alt="default image" id="image">
+        </div>
+      </div>
+      <div class="col-12 col-sm-7">
+        <div class="row">
+          <div id="title" class="h1">Naruto</div>
+          <div id="title_japanese" class="h3">ナルト</div>
+          <div class="h4">Episodes <span id="episodes">220</span></div>
+          <div class="h4">Score <span class="badge rounded-pill bg-warning text-dark" id="score">7.94</span></div>
+          <div class="h5" id="status"></div>
+          <div class="col-10" id="synopsis">"Moments prior to Naruto Uzumaki's birth, a huge demon known as the Kyuubi, the Nine-Tailed Fox, attacked Konohagakure, the Hidden Leaf Village, and wreaked havoc. In order to put an end to the Kyuubi's rampage, the leader of the village, the Fourth Hokage, sacrificed his life and sealed the monstrous beast inside the newborn Naruto. Now, Naruto is a hyperactive and knuckle-headed ninja still living in Konohagakure. Shunned because of the Kyuubi inside him, Naruto struggles to find his place in the village, while his burning desire to become the Hokage of Konohagakure leads him not only to some great new friends, but also some deadly foes. [Written by MAL Rewrite]",</div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
     crossorigin="anonymous"></script>
