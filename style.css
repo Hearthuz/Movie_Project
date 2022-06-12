@@ -1,0 +1,33 @@
+*{
+    font-family: 'Kdam Thmor Pro', sans-serif;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #5E60CE;
+    color: white;
+}
+.bg-purpleblue{
+    background-color: #7400B8;
+}
+.bg-purple{
+    background-color: #6930C3;
+}
+.single_anime_image{
+    width: 18rem;
+}
+.btn-blue{
+    background-color: #80FFDB;
+}
+.btn-blue:hover{
+    background-color: #48BFE3;
+}
+.text-gray{
+    color: gray;
+}
+.text-gray:hover{
+    color: white;
+}
+.card-body:hover{
+    background-color: #e5e5e5;
+}
