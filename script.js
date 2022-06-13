@@ -1,32 +1,42 @@
 var searchResultDisplay = document.getElementById('search_result')
 var singleAnimeDisplay = document.getElementById('single_anime_result')
+var interestedResultDisplay = document.getElementById('interested_result')
 
 function hideAll(){
     searchResultDisplay.style.display='none'
     singleAnimeDisplay.style.display='none'
+    interestedResultDisplay.style.display='none'
+}
+
+function onLoad(){
+    hideAll()
 }
 
 document.getElementById('homeButton').addEventListener('click', function(){
     hideAll()
 })
+
 function singleAnimeData(anime){
     hideAll()
     singleAnimeDisplay.style.display='block'
     let imageElem = document.getElementById('image')
-    imageElem.setAttribute('src', anime.images.jpg.image_url)
+    imageElem.setAttribute('src', anime.image_url)
     let titleElem = document.getElementById('title')
     titleElem.innerHTML = anime.title
-    let titleJapanElem = document.getElementById('title_japanese')
-    titleJapanElem.innerHTML = anime.title_japanese
+    let typeElem = document.getElementById('type')
+    typeElem.innerHTML = anime.type
     let episodesElem = document.getElementById('episodes')
     episodesElem.innerHTML = anime.episodes
     let scoreElem = document.getElementById('score')
     scoreElem.innerHTML = anime.score
-    let statusElem = document.getElementById('status')
-    statusElem.innerHTML = anime.status
+    let statusElem = document.getElementById('rated')
+    statusElem.innerHTML = anime.rated
     let synopsisElem = document.getElementById('synopsis')
     synopsisElem.innerHTML = anime.synopsis
+    let urlElem = document.getElementById('url')
+    urlElem.setAttribute('href', anime.url)
 }
+
 document.getElementById('searchButton').addEventListener('click',() =>{
     const query = document.getElementById('inputText').value
     console.log(query)
@@ -43,6 +53,28 @@ document.getElementById('searchButton').addEventListener('click',() =>{
         alert('your input is not in database')
     })
 })
+
+document.getElementById('interestedButton').addEventListener('click',() =>{
+    showAllInterestedResult()
+})
+
+function showAllInterestedResult(){
+    fetch(`https://se104-project-backend.du.r.appspot.com/movies/642110332`,{
+        method: 'GET'
+    })
+    .then((response) => {
+        return response.json()
+    })
+    .then(data => {
+        hideAll()
+        interestedResultDisplay.style.display='flex'
+        interestedList(data)
+    })
+    .catch(error => {
+        alert('your input is not in database')
+    })
+}
+
 function searchResultList(animeList){
     const searchResult = document.getElementById('search_result');
     searchResult.innerHTML = ''
@@ -51,14 +83,76 @@ function searchResultList(animeList){
         displaySearchResult(anime)
     }
 }
+
+function interestedList(data){
+    const interestedResult = document.getElementById('interested_result');
+    interestedResult.innerHTML = ''
+    console.log(data)
+    for(anime of data){
+        displayInterestedResult(anime)
+    }
+}
+
+function displayInterestedResult(anime){
+    const searchResult = document.getElementById('interested_result');
+    let colDiv = document.createElement('div')
+    colDiv.classList.add('col') 
+    let firstDiv = document.createElement('div')
+    firstDiv.classList.add('card')
+    colDiv.appendChild(firstDiv)
+    let image = document.createElement('img')
+    image.setAttribute('src',anime.image_url)
+    image.classList.add('card-img-top')
+    firstDiv.appendChild(image)
+    let secondDiv = document.createElement('div')
+    secondDiv.classList.add('card-body')
+    firstDiv.appendChild(secondDiv)
+    let header5 = document.createElement('h5')
+    header5.classList.add('card-title')
+    header5.classList.add('text-dark')
+    header5.innerHTML = anime.title
+    secondDiv.appendChild(header5)
+    let paragraph = document.createElement('p')
+    paragraph.classList.add('card-text')
+    paragraph.classList.add('text-secondary')
+    paragraph.innerHTML = anime.type
+    secondDiv.appendChild(paragraph)
+    let button = document.createElement('button')
+    button.classList.add('btn')
+    button.classList.add('btn-warning')
+    button.classList.add('me-3')
+    button.setAttribute('type', 'button')
+    button.innerText = 'detail'
+    button.addEventListener('click', function(){
+        singleAnimeData(anime)
+    })
+    secondDiv.appendChild(button)
+    let deleteButton = document.createElement('button')
+    deleteButton.classList.add('btn')
+    deleteButton.classList.add('btn-danger')
+    deleteButton.setAttribute('type', 'button')
+    deleteButton.innerText = 'delete'
+    deleteButton.addEventListener('click', function(){
+        console.log(anime.id)
+        deleteAnime(anime.id)
+    })
+    secondDiv.appendChild(deleteButton)
+    searchResult.appendChild(colDiv)
+}
+
 function displaySearchResult(anime){
-    console.log(anime)
     const searchResult = document.getElementById('search_result');
     let colDiv = document.createElement('div')
     colDiv.classList.add('col') 
     let firstDiv = document.createElement('div')
     firstDiv.classList.add('card')
     firstDiv.addEventListener('dblclick', function() {
+        let cf = `Want to add ${anime.title} ?`;
+        if(confirm(cf)){
+            console.log(anime)
+            addAnimeToDB(anime)
+            showAllInterestedResult()
+        }
     })
     colDiv.appendChild(firstDiv)
     let image = document.createElement('img')
@@ -76,19 +170,57 @@ function displaySearchResult(anime){
     let paragraph = document.createElement('p')
     paragraph.classList.add('card-text')
     paragraph.classList.add('text-secondary')
-    paragraph.innerHTML = anime.status
+    paragraph.innerHTML = anime.type
     secondDiv.appendChild(paragraph)
-    let button = document.createElement('button')
-    button.classList.add('btn')
-    button.classList.add('btn-warning')
-    button.setAttribute('type', 'button')
-    button.innerText = 'detail'
-    button.addEventListener('click', function(){
-        singleAnimeData(anime)
-    })
-    secondDiv.appendChild(button)
     searchResult.appendChild(colDiv)
 }
-function onLoad(){
-    hideAll()
+
+function addAnimeToDB(anime){
+    fetch('https://se104-project-backend.du.r.appspot.com/movies',{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({
+            id: '642110332',
+            movie: {
+                url: `${anime.url}`,
+                image_url: `${anime.images.jpg.image_url}`,
+                title: `${anime.title}`,
+                synopsis: `${anime.synopsis}`,
+                type: `${anime.type}`,
+                episodes: `${anime.episodes}`,
+                score: `${anime.score}`,
+                rated: `${anime.rating}`,
+            }
+        })
+    }).then(response => {
+        if (response.status === 200){
+            return response.json()
+        }else{
+            throw Error(response.statusText)
+        }
+    }).then(data => {
+        console.log('success',data)
+        alert(`anime ${data.title} is now added`)
+    }).catch(error => {
+        return null
+    })
+}
+
+function deleteAnime(id){
+    fetch(`https://se104-project-backend.du.r.appspot.com/movie?id=642110332&&movieId=${id}`,{
+        method: 'DELETE'
+    }).then(response => {
+        if (response.status === 200){
+            return response.json()
+        }else{
+            throw Error(response.statusText)
+        }
+    }).then(data => {
+        alert(`Anime name ${data.title} is now deleted`)
+        showAllInterestedResult()
+    }).catch(error => {
+        alert('your input student id is not in database')
+    })
 }

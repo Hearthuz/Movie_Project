@@ -8,7 +8,10 @@ body {
     color: white;
 }
 .bg-purpleblue{
-    background-color: #7400B8;
+    background-color: #240046;
+}
+.bg-purpleblue:hover{
+    background-color: #37006b;
 }
 .bg-purple{
     background-color: #6930C3;
@@ -16,16 +19,16 @@ body {
 .single_anime_image{
     width: 18rem;
 }
-.btn-blue{
-    background-color: #80FFDB;
+.btn-search{
+    background-color: #90cf8e;
 }
-.btn-blue:hover{
-    background-color: #48BFE3;
+.btn-search:hover{
+    background-color: #a7dca5;
 }
-.text-gray{
-    color: gray;
+.text-search{
+    color: white;
 }
-.text-gray:hover{
+.text-search:hover{
     color: white;
 }
 .card-body:hover{
@@ -33,6 +36,12 @@ body {
 }
 .icon{
     width: 100%;
-    max-width: 550px;
+    max-width: 500px;
     height: auto;
+}
+a{
+    color: white;
+}
+a:hover{
+    color: #e5e5e5;
 }

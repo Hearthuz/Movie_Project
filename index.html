@@ -14,8 +14,8 @@
   <div class="container">
     <div class="d-flex flex-wrap justify-content-center justify-content-lg-start col-12 pt-2">
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-light h5 btn rounded-pill bg-purpleblue me-2" id="homeButton">Home</a></li>
-        <li><a href="#" class="nav-link px-2 link-light h5 btn rounded-pill bg-purpleblue" id="editStudentMenu">Mark</a></li>
+        <li><a href="#" class="nav-link px-2 link-light h5 btn rounded bg-purpleblue me-3" id="homeButton">Home</a></li>
+        <li><a href="#" class="nav-link px-2 link-light h5 btn rounded bg-purpleblue" id="interestedButton">Interested</a></li>
       </ul>
       <div class="dropdown text-end">
         <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1"
@@ -40,54 +40,18 @@
     <form class="row gy-2 gx-3 align-items-center col-6">
         <input type="search" class="form-control rounded-pill" placeholder="Search..." aria-label="Search" id="inputText">
     </form>
-    <button type="button" class="btn rounded-pill btn-blue text-gray me-2" id="searchButton">Search</button>
+    <button type="button" class="btn rounded-pill btn-search text-search me-2" id="searchButton">Search</button>
   </div>
   <div class="container">
-      <div class="row row-cols-1 row-cols-md-4 g-4 p-4" id="search_result">
-        <div class="col">
-          <div class="card">
-            <img src="https://cdn.myanimelist.net/images/anime/13/17405.jpg" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title text-dark">Naruto</h5>
-              <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://cdn.myanimelist.net/images/anime/13/17405.jpg" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title text-dark">Naruto</h5>
-              <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://cdn.myanimelist.net/images/anime/13/17405.jpg" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title text-dark">Naruto</h5>
-              <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card">
-            <img src="https://cdn.myanimelist.net/images/anime/13/17405.jpg" class="card-img-top">
-            <div class="card-body">
-              <h5 class="card-title text-dark">Naruto</h5>
-              <p class="card-text text-dark">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
+    <div class="row row-cols-1 row-cols-md-4 g-4" id="search_result">
+    </div>
+  </div>
+  <div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4" id="interested_result">
     </div>
   </div>
   <div id="single_anime_result">
-    <div class="d-flex flex-wrap align-items-start justify-content-center bg-purple p-3 row">
+    <div class="d-flex flex-wrap align-items-start justify-content-center bg-purple p-4 mt-4">
       <div class="col-12 col-sm-3 pe-3 pb-3">
         <div class="row">
           <img src="https://cdn.myanimelist.net/images/anime/13/17405.jpg" alt="default image" id="image">
@@ -96,11 +60,12 @@
       <div class="col-12 col-sm-7">
         <div class="row">
           <div id="title" class="h1">Naruto</div>
-          <div id="title_japanese" class="h3">ナルト</div>
+          <div id="type" class="h3">Type</div>
           <div class="h4">Episodes <span id="episodes">220</span></div>
           <div class="h4">Score <span class="badge rounded-pill bg-warning text-dark" id="score">7.94</span></div>
-          <div class="h5" id="status"></div>
-          <div class="col-10" id="synopsis">"Moments prior to Naruto Uzumaki's birth, a huge demon known as the Kyuubi, the Nine-Tailed Fox, attacked Konohagakure, the Hidden Leaf Village, and wreaked havoc. In order to put an end to the Kyuubi's rampage, the leader of the village, the Fourth Hokage, sacrificed his life and sealed the monstrous beast inside the newborn Naruto. Now, Naruto is a hyperactive and knuckle-headed ninja still living in Konohagakure. Shunned because of the Kyuubi inside him, Naruto struggles to find his place in the village, while his burning desire to become the Hokage of Konohagakure leads him not only to some great new friends, but also some deadly foes. [Written by MAL Rewrite]",</div>
+          <div class="h5" id="rated"></div>
+          <div class="col-10" id="synopsis"></div>
+          <a href="" id="url" class="h5"><br>More Info...</a>
         </div>
       </div>
     </div>
