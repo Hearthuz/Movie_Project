@@ -1,19 +1,23 @@
 var searchResultDisplay = document.getElementById('search_result')
 var singleAnimeDisplay = document.getElementById('single_anime_result')
 var interestedResultDisplay = document.getElementById('interested_result')
+var interestedHeaderDisplay = document.getElementById('interestedHeader')
 
 function hideAll(){
     searchResultDisplay.style.display='none'
     singleAnimeDisplay.style.display='none'
     interestedResultDisplay.style.display='none'
+    interestedHeaderDisplay.style.display='none'
 }
 
 function onLoad(){
     hideAll()
+    topAnime()
 }
 
 document.getElementById('homeButton').addEventListener('click', function(){
     hideAll()
+    topAnime()
 })
 
 function singleAnimeData(anime){
@@ -67,6 +71,7 @@ function showAllInterestedResult(){
     })
     .then(data => {
         hideAll()
+        interestedHeaderDisplay.style.display='block'
         interestedResultDisplay.style.display='flex'
         interestedList(data)
     })
@@ -124,6 +129,7 @@ function displayInterestedResult(anime){
     button.setAttribute('type', 'button')
     button.innerText = 'detail'
     button.addEventListener('click', function(){
+        hideAll()
         singleAnimeData(anime)
     })
     secondDiv.appendChild(button)
@@ -133,8 +139,11 @@ function displayInterestedResult(anime){
     deleteButton.setAttribute('type', 'button')
     deleteButton.innerText = 'delete'
     deleteButton.addEventListener('click', function(){
-        console.log(anime.id)
-        deleteAnime(anime.id)
+        let cf = `Want to add ${anime.title} ?`;
+        if(confirm(cf)){
+            console.log(anime.id)
+            deleteAnime(anime.id)
+        }
     })
     secondDiv.appendChild(deleteButton)
     searchResult.appendChild(colDiv)
@@ -151,7 +160,6 @@ function displaySearchResult(anime){
         if(confirm(cf)){
             console.log(anime)
             addAnimeToDB(anime)
-            showAllInterestedResult()
         }
     })
     colDiv.appendChild(firstDiv)
@@ -203,6 +211,7 @@ function addAnimeToDB(anime){
     }).then(data => {
         console.log('success',data)
         alert(`anime ${data.title} is now added`)
+        showAllInterestedResult()
     }).catch(error => {
         return null
     })
@@ -222,5 +231,20 @@ function deleteAnime(id){
         showAllInterestedResult()
     }).catch(error => {
         alert('your input student id is not in database')
+    })
+}
+function topAnime(){
+    fetch('https://api.jikan.moe/v4/top/anime?q=bypopularity')
+    .then((response) => {
+        return response.json()
+    })
+    .then(data => {
+        console.log(data)
+        hideAll()
+        searchResultDisplay.style.display='flex'
+        searchResultList(data.data)
+    })
+    .catch(error => {
+        alert('your input is not in database')
     })
 }
