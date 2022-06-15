@@ -2,12 +2,14 @@ var searchResultDisplay = document.getElementById('search_result')
 var singleAnimeDisplay = document.getElementById('single_anime_result')
 var interestedResultDisplay = document.getElementById('interested_result')
 var interestedHeaderDisplay = document.getElementById('interestedHeader')
+var searchHeaderDisplay = document.getElementById('searchHeader')
 
 function hideAll(){
     searchResultDisplay.style.display='none'
     singleAnimeDisplay.style.display='none'
     interestedResultDisplay.style.display='none'
     interestedHeaderDisplay.style.display='none'
+    searchHeaderDisplay.style.display='none'
 }
 
 function onLoad(){
@@ -139,7 +141,7 @@ function displayInterestedResult(anime){
     deleteButton.setAttribute('type', 'button')
     deleteButton.innerText = 'delete'
     deleteButton.addEventListener('click', function(){
-        let cf = `Want to add ${anime.title} ?`;
+        let cf = `Want to delete ${anime.title} ?`;
         if(confirm(cf)){
             console.log(anime.id)
             deleteAnime(anime.id)
@@ -210,7 +212,7 @@ function addAnimeToDB(anime){
         }
     }).then(data => {
         console.log('success',data)
-        alert(`anime ${data.title} is now added`)
+        alert(`${data.title} is now added`)
         showAllInterestedResult()
     }).catch(error => {
         return null
@@ -227,7 +229,7 @@ function deleteAnime(id){
             throw Error(response.statusText)
         }
     }).then(data => {
-        alert(`Anime name ${data.title} is now deleted`)
+        alert(`${data.title} is now deleted`)
         showAllInterestedResult()
     }).catch(error => {
         alert('your input student id is not in database')
@@ -241,6 +243,7 @@ function topAnime(){
     .then(data => {
         console.log(data)
         hideAll()
+        searchHeaderDisplay.style.display='block'
         searchResultDisplay.style.display='flex'
         searchResultList(data.data)
     })
