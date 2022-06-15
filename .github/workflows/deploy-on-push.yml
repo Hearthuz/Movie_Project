@@ -14,7 +14,7 @@ jobs:
       with:
         host: ${{ secrets.PROJECT_MOVIE_HOST }}
         username: ${{ secrets.PROJECT_MOVIE_SSH_USER_NAME }}
-        port: ${{ secrets.SSH_PORT }}
-        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PROJECT_MOVIE_PORT }}
+        key: ${{ secrets.PROJECT_MOVIE_KEY }}
         source: "./*"
         target: "/var/www/html/"
