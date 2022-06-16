@@ -7,14 +7,15 @@ body{
     background-color: #5E60CE;
     color: white;
 }
-.push{
-    height: 100px;
+#interested_result{
+    height: auto;
+    min-height: 165px;
 }
-.footer{
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
+.push{
+    height: 50px;
+}
+.interestedPush{
+    height: 115px;
 }
 .bg-purpleblue{
     background-color: #240046;
@@ -29,10 +30,10 @@ body{
     width: 18rem;
 }
 .btn-search{
-    background-color: #90cf8e;
+    background-color: #afd189;
 }
 .btn-search:hover{
-    background-color: #a7dca5;
+    background-color: #b9d798;
 }
 .text-search{
     color: white;
@@ -55,9 +56,9 @@ a:hover{
     color: #e5e5e5;
 }
 .text-blue{
-    color: #80FFDB;
+    color: #fae588;
 }
 .bg-footer{
-    background-color: #c8b6ff;
-    color: gray;
+    background-color: #dabfff;
+    color: #00406c;
 }

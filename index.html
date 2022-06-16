@@ -44,17 +44,18 @@
     <button type="button" class="btn rounded-pill btn-search text-search me-2" id="searchButton">Search</button>
   </div>
   <div class="container">
-    <div class="h1 text-blue mb-4" id="searchHeader">Popular Movie</div>
+    <div class="h1 text-blue mb-4" id="searchHeader"><b>Popular Movie</b></div>
     <div class="row row-cols-1 row-cols-md-4 g-4" id="search_result">
     </div>
   </div>
   <div class="container">
-    <div class="h1 text-blue mb-4" id="interestedHeader">Interested Movie</div>
+    <div class="h1 text-blue mb-4" id="interestedHeader"><b>Interested Movie</b></div>
     <div class="row row-cols-1 row-cols-md-4 g-4" id="interested_result">
+      No Items
     </div>
   </div>
   <div id="single_anime_result">
-    <div class="d-flex flex-wrap align-items-start justify-content-center bg-purple p-4 mt-4">
+    <div class="d-flex flex-wrap justify-content-center bg-purple p-4 mt-4">
       <div class="col-12 col-sm-3 pe-3 pb-3">
         <div class="row">
           <img src="" alt="default image" id="image">
@@ -68,12 +69,12 @@
           <div class="h4">Score <span class="badge rounded-pill bg-warning text-dark" id="score"></span></div>
           <div class="h5" id="rated"></div>
           <div class="col-10" id="synopsis"></div>
-          <a href="" id="url" class="h5"><br>More Info...</a>
+          <div class="push"></div>
+          <a href="" id="url" class="h5">More Info...</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="push"></div>
   <div class="footer">
     <div class="bg-footer d-flex justify-content-center pt-3 col-12 mt-5">
       <div class="d-flex flex-wrap justify-content-between col-10">
